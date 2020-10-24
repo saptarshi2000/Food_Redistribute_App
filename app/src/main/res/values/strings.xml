@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NoHunger</string>
+    <string name="food_type">Food-type: %s</string>
+    <string name="max_people">Max-people: %s</string>
+    <string name="no">No %s</string>
+    <string name="address">Address: %s</string>
+</resources>

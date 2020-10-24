@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.saptarshisamanta.nohunger.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_donationActivity"
+            app:destination="@id/donationActivity"
+            app:popUpTo="@id/donationActivity"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.saptarshisamanta.nohunger.ui.food.FoodFragment"
+        android:label="FoodFragment" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.saptarshisamanta.nohunger.ui.menu.MenuFragment"
+        android:label="MenuFragment" />
+    <activity
+        android:id="@+id/donationActivity"
+        android:name="com.saptarshisamanta.nohunger.ui.DonationActivity"
+        android:label="activity_donation"
+        tools:layout="@layout/activity_donation" />
+    <fragment
+        android:id="@+id/claimedListFragment"
+        android:name="com.saptarshisamanta.nohunger.ui.claimedlist.ClaimedListFragment"
+        android:label="ClaimedListFragment" />
+</navigation>
