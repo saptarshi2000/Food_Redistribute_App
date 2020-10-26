@@ -61,18 +61,17 @@ class DonateFragment : Fragment(R.layout.fragment_donate) {
             when (it) {
                 is Resource.Success -> {
                     Toast.makeText(context, it.data!!.result, Toast.LENGTH_SHORT).show()
-//                    usernameLayout.editText?.setText("")
-//                    phoneLayout.editText?.setText("")
-//                    cityLayout.editText?.setText("")
-//                    addressLayout.editText?.setText("")
-//                    foodsLayout.editText?.setText("")
-//                    expiryLayout.editText?.setText("")
-//                    maxpeopleLayout.editText?.setText("")
-//                    veg.isChecked = true
-//                    image.setImageResource(R.drawable.food)
-//                    bitmap_ = (image.drawable as BitmapDrawable).bitmap
-//                    requireView().findNavController().navigate(DonateFragmentDirections.actionDonateFragment2ToMainActivity2())
-//                    activity?.finish()
+                    usernameLayout.editText?.setText("")
+                    phoneLayout.editText?.setText("")
+                    cityLayout.editText?.setText("")
+                    addressLayout.editText?.setText("")
+                    foodsLayout.editText?.setText("")
+                    expiryLayout.editText?.setText("")
+                    maxpeopleLayout.editText?.setText("")
+                    veg.isChecked = true
+                    image.setImageResource(R.drawable.food)
+                    bitmap_ = (image.drawable as BitmapDrawable).bitmap
+
                 }
                 is Resource.Loading -> {
                     (Toast.makeText(context, "loading", Toast.LENGTH_SHORT)).show()

@@ -35,32 +35,32 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     @Inject
     lateinit var tokenSharedPreferences: SharedPreferences
 
-    @set:Inject
-    var isFirstTime = true
 
     private val viewModel by viewModels<WelcomeFragmentViewModel>()
 
     var selection = DONOR
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val isFirstTime = sharedPref.getBoolean(KEY_AC_FIRST_TIME, true)
         val token = tokenSharedPreferences.getString(KEY_TOKEN, DEFAULT_TOKEN)!!
-       Log.e("xyz","test")
+        Log.e("xyz", "test")
 
         if (!isFirstTime) {
             val sel = sharedPref.getString(KEY_AC_TYPE, DONOR)
             if (sel == DONOR) {
+                Log.e("xyz", "error")
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
             } else {
                 if (token != DEFAULT_TOKEN) {
-                    val parameter:HashMap<String,String> = HashMap()
+                    val parameter: HashMap<String, String> = HashMap()
                     parameter["token"] = token
                     viewModel.logInCall(parameter)
 
                 } else {
-                    requireView().findNavController().navigate((WelcomeFragmentDirections.actionWelcomeFragmentToLogInFragment()))
+                    requireView().findNavController()
+                        .navigate((WelcomeFragmentDirections.actionWelcomeFragmentToLogInFragment()))
                 }
             }
 
@@ -92,18 +92,19 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
                 )
             }
         }
-        viewModel.result.observe(viewLifecycleOwner,{
-            when(it){
-                is Resource.Success ->{
+        viewModel.result.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }
-                is Resource.Error ->{
+                is Resource.Error -> {
                     Toast.makeText(context, "Login again", Toast.LENGTH_SHORT).show()
-                    requireView().findNavController().navigate((WelcomeFragmentDirections.actionWelcomeFragmentToLogInFragment()))
+                    requireView().findNavController()
+                        .navigate((WelcomeFragmentDirections.actionWelcomeFragmentToLogInFragment()))
                 }
-                is Resource.Loading ->{
+                is Resource.Loading -> {
                     Toast.makeText(context, "loading", Toast.LENGTH_SHORT).show()
                 }
             }

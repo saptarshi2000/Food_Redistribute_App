@@ -32,7 +32,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToLiveData()
-        var logedin:Boolean
+        val logedin:Boolean
         val token = sharedPreferences
             .getString(KEY_TOKEN, DEFAULT_TOKEN)!!
         if (token == DEFAULT_TOKEN){
@@ -57,8 +57,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 is Resource.Success ->{
                     sharedPreferences.edit().clear().apply()
                     newSharedPreferences.edit()
-                        .putBoolean(Constants.KEY_AC_FIRST_TIME,true)
-                        .remove(Constants.KEY_AC_TYPE)
+                        .clear()
                         .apply()
                     val intent = Intent(context,RegisterActivity::class.java)
                     startActivity(intent)
@@ -70,8 +69,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                     if (it.data?.error == "auth_error"){
                         sharedPreferences.edit().clear().apply()
                         newSharedPreferences.edit()
-                            .putBoolean(Constants.KEY_AC_FIRST_TIME,true)
-                            .remove(Constants.KEY_AC_TYPE)
+                            .clear()
                             .apply()
                         val intent = Intent(context,RegisterActivity::class.java)
                         startActivity(intent)
