@@ -38,7 +38,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
     private val viewModel by viewModels<WelcomeFragmentViewModel>()
 
-    var selection = DONOR
+    private var selection = DONOR
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val isFirstTime = sharedPref.getBoolean(KEY_AC_FIRST_TIME, true)
@@ -63,8 +63,6 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
                         .navigate((WelcomeFragmentDirections.actionWelcomeFragmentToLogInFragment()))
                 }
             }
-
-
         }
         donor.setOnCheckedChangeListener { compoundButton, b ->
             if (b) {
@@ -111,4 +109,6 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         })
 
     }
+
+
 }
